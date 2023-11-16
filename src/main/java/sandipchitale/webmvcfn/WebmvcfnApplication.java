@@ -57,10 +57,11 @@ public class WebmvcfnApplication {
 			RestTemplate restTemplate = restTemplateBuilder.rootUri("https://postman-echo.com/").build();
 			HttpEntity<Person> personEntity = new HttpEntity<>(new Person("hitchhiker", 42));
 			return ServerResponse.ok().body(
-					Objects.requireNonNull(restTemplate.exchange("/" + request.method().name().toLowerCase(),
-							request.method(),
-							personEntity,
-							String.class).getBody())
+					Objects.requireNonNull(
+							restTemplate.exchange("/" + request.method().name().toLowerCase(),
+											request.method(),
+											personEntity,
+											String.class).getBody())
 			);
 		};
 	}
@@ -73,11 +74,12 @@ public class WebmvcfnApplication {
 			RestClient restClient = restClientBuilder.baseUrl("https://postman-echo.com/").build();
 			HttpEntity<Person> personEntity = new HttpEntity<>(new Person("hitchhiker", 42));
 			return ServerResponse.ok().body(
-					Objects.requireNonNull(restClient.method(request.method())
-							.uri("/" + request.method().name().toLowerCase())
-							.body(personEntity)
-							.retrieve()
-							.body(String.class))
+					Objects.requireNonNull(
+							restClient.method(request.method())
+									.uri("/" + request.method().name().toLowerCase())
+									.body(personEntity)
+									.retrieve()
+									.body(String.class))
 			);
 		};
 	}
