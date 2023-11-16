@@ -1,6 +1,5 @@
 package sandipchitale.webmvcfn;
 
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.function.*;
 
 import java.util.Objects;
-import java.util.function.Supplier;
 
 import static org.springframework.web.servlet.function.RequestPredicates.methods;
 import static org.springframework.web.servlet.function.RequestPredicates.path;
@@ -57,7 +55,7 @@ public class WebmvcfnApplication {
 	HandlerFunction<ServerResponse> restTemplateServerResponse(RestTemplateBuilder restTemplateBuilder) {
 		return (ServerRequest request) -> {
 			RestTemplate restTemplate = restTemplateBuilder.rootUri("https://postman-echo.com/").build();
-			HttpEntity<Person> personEntity = new HttpEntity<>(new Person("somebody", 42));
+			HttpEntity<Person> personEntity = new HttpEntity<>(new Person("hitchhiker", 42));
 			return ServerResponse.ok().body(
 					Objects.requireNonNull(restTemplate.exchange("/" + request.method().name().toLowerCase(),
 							request.method(),
@@ -73,7 +71,7 @@ public class WebmvcfnApplication {
 	HandlerFunction<ServerResponse> restClientServerResponse(RestClient.Builder restClientBuilder) {
 		return (ServerRequest request) -> {
 			RestClient restClient = restClientBuilder.baseUrl("https://postman-echo.com/").build();
-			HttpEntity<Person> personEntity = new HttpEntity<>(new Person("somebody", 42));
+			HttpEntity<Person> personEntity = new HttpEntity<>(new Person("hitchhiker", 42));
 			return ServerResponse.ok().body(
 					Objects.requireNonNull(restClient.method(request.method())
 							.uri("/" + request.method().name().toLowerCase())
