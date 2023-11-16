@@ -2,6 +2,11 @@
 
 Simple Spring Boot application to demonstrate WebMVC.fn to proxy requests to `https://postman-echo.com/` using rest template.
 
+If `resttemplate` profile is active uses `RestTemplate` to proxy requests to `https://postman-echo.com/`,
+else `RestClient` to proxy requests to `https://postman-echo.com/`.
+
+If `docker-compose` profile is active the starts and stops Docker container running Zipkin. 
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 
