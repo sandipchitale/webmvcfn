@@ -59,9 +59,9 @@ public class WebmvcfnApplication {
 			return ServerResponse.ok().body(
 					Objects.requireNonNull(
 							restTemplate.exchange("/" + request.method().name().toLowerCase(),
-											request.method(),
-											personEntity,
-											String.class).getBody())
+									request.method(),
+									personEntity,
+									String.class).getBody())
 			);
 		};
 	}
@@ -83,5 +83,4 @@ public class WebmvcfnApplication {
 			);
 		};
 	}
-
 }
